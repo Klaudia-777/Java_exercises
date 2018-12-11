@@ -1,4 +1,4 @@
-package dec2roman;
+package Codewars;
 
 public class Pair<K,V> {
     public K first;
@@ -8,3 +8,4 @@ public class Pair<K,V> {
         this.second=second;
     }
 }
+

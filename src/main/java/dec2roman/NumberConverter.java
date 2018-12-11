@@ -4,29 +4,29 @@ import java.util.*;
 
 public class NumberConverter {
 
-    private List<Pair<Integer, String>> myMap = new ArrayList<>();
+    private List<Pair1<Integer, String>> myMap = new ArrayList<>();
 
 
     public NumberConverter() {
-        myMap.add(new Pair<>(1000, "M"));
-        myMap.add(new Pair<>(900, "CM"));
-        myMap.add(new Pair<>(500, "D"));
-        myMap.add(new Pair<>(400, "CD"));
-        myMap.add(new Pair<>(100, "C"));
-        myMap.add(new Pair<>(90, "XC"));
-        myMap.add(new Pair<>(50, "L"));
-        myMap.add(new Pair<>(40, "XL"));
-        myMap.add(new Pair<>(10, "X"));
-        myMap.add(new Pair<>(9, "IX"));
-        myMap.add(new Pair<>(5, "V"));
-        myMap.add(new Pair<>(4, "IV"));
-        myMap.add(new Pair<>(1, "I"));
+        myMap.add(new Pair1<>(1000, "M"));
+        myMap.add(new Pair1<>(900, "CM"));
+        myMap.add(new Pair1<>(500, "D"));
+        myMap.add(new Pair1<>(400, "CD"));
+        myMap.add(new Pair1<>(100, "C"));
+        myMap.add(new Pair1<>(90, "XC"));
+        myMap.add(new Pair1<>(50, "L"));
+        myMap.add(new Pair1<>(40, "XL"));
+        myMap.add(new Pair1<>(10, "X"));
+        myMap.add(new Pair1<>(9, "IX"));
+        myMap.add(new Pair1<>(5, "V"));
+        myMap.add(new Pair1<>(4, "IV"));
+        myMap.add(new Pair1<>(1, "I"));
     }
 
     public String decToRoman(Integer decimal) {
         String result = "";
 
-        for (Pair<Integer, String> it : myMap) {
+        for (Pair1<Integer, String> it : myMap) {
             int tmp = decimal / it.first;
             if (tmp > 0 & tmp < 4) {
                 for (int i = 0; i < tmp; i++) {
@@ -42,7 +42,7 @@ public class NumberConverter {
         int result = 0;
 
 
-        for (Pair<Integer, String> it : myMap) {
+        for (Pair1<Integer, String> it : myMap) {
             if (it.second.length() == 2 && roman.contains(it.second)) {
                 result += it.first;
                 roman = roman.replace(it.second, "");
