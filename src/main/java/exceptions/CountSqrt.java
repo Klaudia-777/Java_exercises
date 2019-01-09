@@ -8,10 +8,6 @@ import static java.lang.Math.sqrt;
 
 public class CountSqrt {
 
-
-
-
-
     public static void main(String [] args) {
 
        while(true){
