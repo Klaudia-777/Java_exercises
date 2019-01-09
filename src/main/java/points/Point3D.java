@@ -1,4 +1,4 @@
-package laboratorium1;
+package points;
 
 import static java.lang.Math.*;
 
@@ -9,9 +9,15 @@ public class Point3D extends Point2D {
         super( x, y);
         this.z=z;
     }
+    public Point3D(Point2D point2D,double z){
+        super(point2D.getX(),point2D.getY());
+        this.z=z;
+    }
 
     public double distance(Point3D punkt){
-        return sqrt(pow(getX()-punkt.getX(),2)+pow(getY()-punkt.getY(),2)+pow(z-punkt.getZ(),2));
+//        return sqrt(pow(super.distance(this),2)+pow(z-punkt.getZ(),2));
+        return sqrt(pow(super.distance(this),2)+pow(z-punkt.getZ(),2));
+
     }
 
     public double getZ() {

@@ -1,4 +1,4 @@
-package Lab1;
+package lab1;
 
 //Napisz program umożliwiający dodawanie, odejmowanie oraz mnożenie dwóch macierzy.
 //Stwórz klasę Macierz, która będzie posiadała metody add, sub, mul przyjmujące jako

@@ -1,4 +1,4 @@
-package Lab1;
+package lab1;
 
 /*
  * To change this template, choose Tools | Templates

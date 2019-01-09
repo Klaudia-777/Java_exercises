@@ -1,6 +1,4 @@
-package Lab1;
-
-import java.io.*;
+package lab1;
 
 public class Pesel {
 

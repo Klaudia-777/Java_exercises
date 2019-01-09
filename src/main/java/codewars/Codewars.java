@@ -1,10 +1,18 @@
-package Codewars;
+package codewars;
 
+/**
+ * SOLVED KATA'S
+ * RANKS 8 to 5
+                **/
+
+import lombok.var;
 
 import java.util.*;
 import java.util.ArrayList;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.stream.IntStream;
+import static java.lang.Math.sqrt;
+
 
 public class Codewars {
 
@@ -12,7 +20,6 @@ public class Codewars {
         if (word.length() % 2 == 1) return Character.toString(word.charAt(word.length() / 2));
         return Character.toString(word.charAt(word.length() / 2 - 1)) + Character.toString(word.charAt(word.length() / 2));
     }
-
 
     public static int digital_root(int n) {
         String str = Integer.toString(n);
@@ -43,16 +50,12 @@ public class Codewars {
                         number /= divisors.get(j);
                         count++;
                     }
-
                 }
             }
             if (count == k) addElement(tab, i);
-
         }
-
         System.out.println(tab);
         return tab;
-
     }
 
     static long[] addElement(long[] org, long added) {
@@ -191,31 +194,30 @@ public class Codewars {
         Map<Integer, Integer> Numbers = new HashMap<>();
         List<Integer> nowa = new ArrayList<Integer>();
         List<Integer> store = new ArrayList<Integer>();
-       int count=0;
-        for (int element:elements) {
-            count=1;
+        int count = 0;
+        for (int element : elements) {
+            count = 1;
 
             for (Integer aStore : store) {
                 if (aStore == element) count++;
             }
 
-            if(!Numbers.containsKey(element)) Numbers.put(element,1);
+            if (!Numbers.containsKey(element)) Numbers.put(element, 1);
             else {
                 Numbers.put(element, count);
             }
             store.add(element);
-            if(count<=maxOccurrences) nowa.add(element);
+            if (count <= maxOccurrences) nowa.add(element);
         }
 
 
         System.out.println(nowa);
-        int [] result =new int[nowa.size()];
+        int[] result = new int[nowa.size()];
         for (int i = 0; i < nowa.size(); i++) {
-            result[i]=nowa.get(i);
+            result[i] = nowa.get(i);
         }
-    return result;
-   }
-
+        return result;
+    }
 
 
 ///////////////// v1
@@ -252,29 +254,28 @@ public class Codewars {
     //////////////// v2
 
 
-
     public static String longestConsec(String[] strarr, int k) {
-        if(k>strarr.length || k<=0) return "";
-        int length=0;
-        int max=0;
-        int index=0;
-        String result="";
+        if (k > strarr.length || k <= 0) return "";
+        int length = 0;
+        int max = 0;
+        int index = 0;
+        String result = "";
         var stringBuilder = new StringBuilder();
-        for (int i=0;i<strarr.length-k+1;i++) {
-            for(int j=0;j<k;j++){
-                length+=strarr[i+j].length();
+        for (int i = 0; i < strarr.length - k + 1; i++) {
+            for (int j = 0; j < k; j++) {
+                length += strarr[i + j].length();
             }
-            if(length>max) {
-                max=length;
-                index=i;
+            if (length > max) {
+                max = length;
+                index = i;
             }
-            length=0;
+            length = 0;
         }
         for (int i = 0; i < k; i++) {
-            stringBuilder.append(strarr[index+i]);
+            stringBuilder.append(strarr[index + i]);
         }
-        result=stringBuilder.toString();
-    System.out.println(result);
+        result = stringBuilder.toString();
+        System.out.println(result);
         return result;
     }
 
@@ -292,9 +293,6 @@ public class Codewars {
 //    }
 
 
-/////////////////////////////////////////////////CLEVER!!!!!!!!!!
-
-
     public static String createPhoneNumber(int[] numbers) {
         String phoneNumber = new String("(xxx) xxx-xxxx");
 
@@ -306,55 +304,220 @@ public class Codewars {
     }
 
 
-        public static boolean isValid(char[] walk) {
-            if(walk.length!=10) return false;
-            int count=0;
-            for (char it:walk) {
-            if(it=='s'||it=='w') count++;
+    public static boolean isValid(char[] walk) {
+        if (walk.length != 10) return false;
+        int count = 0;
+        for (char it : walk) {
+            if (it == 's' || it == 'w') count++;
             else count--;
-            }
-            return count==0;
         }
+        return count == 0;
+    }
 
 
     public static String[] inArray(String[] array1, String[] array2) {
-        List <String> result = new ArrayList<>();
+        List<String> result = new ArrayList<>();
         for (String anArray2 : array2)
             for (String anArray1 : array1)
                 if (anArray2.contains(anArray1) && !result.contains(anArray1)) result.add(anArray1);
 
-       Collections.sort(result);
+        Collections.sort(result);
         return result.toArray(new String[0]);
     }
 
 
-
-    /*
-                    ----~MAIN~----
-                                                   */
-
-
-    public static void main(String[] arg) {
-        //countKprimes(5, 500, 600);
-        //deleteNth(new int[]{1, 2, 3, 1, 1, 2, 1, 2, 3, 3, 2, 4, 5, 3, 1 }, 3);
-
-        String [] kk = new String [] {"itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyx"};
-        Object [] ms = Arrays.stream(kk).filter(n -> (n.length()>10)).toArray();
-
-        for (Object it:ms) {
-            System.out.println(it);
-
+    public static List<Integer> sqInRect(int lng, int wdth) {
+        List<Integer> mySquares = new ArrayList<Integer>();
+        int area = lng * wdth;
+        while (area > 0) {
+            if (lng > wdth) {
+                mySquares.add(wdth);
+                lng -= wdth;
+            } else if (lng < wdth) {
+                mySquares.add(lng);
+                wdth -= lng;
+            }
+            area = lng * wdth;
         }
-        longestConsec(new String [] {"itvayloxrp","wkppqsztdkmvcuwvereiupccauycnjutlv","vweqilsfytihvrzlaodfixoyx"}, 2);
-        createPhoneNumber(new int[] {1,2,3,4,5,6,7,8,9});
-       System.out.println( isValid(new char[] {'n','n','n','s','n','s','n','s','n','s'}));
+        return mySquares;
+    }
+
+    public static int countDeafRats(final String town) {
+        town.replace(" ", "");
+        int count = 0;
+        for (int i = 0; i < town.length(); i += 2) {
+            if (town.charAt(i) == 'O') count++;
+        }
+        return count;
+    }
+
+
+    public static String HighAndLow(String numbers) {
+        String result = "";
+        List arr = new ArrayList<String>();
+        result += Arrays.stream(numbers.split(" ")).mapToInt(Integer::valueOf).max().getAsInt();
+        result += Arrays.stream(numbers.split(" ")).mapToInt(Integer::valueOf).min().getAsInt();
+
+
+        return result;
+    }
+
+    public static String NOWA(String numbers) {
+        String result = "";
+        List<String> arr = Arrays.stream(numbers.split(" ")).filter(n -> n.length() % 2 == 0).collect(Collectors.toList());
+        int maxLength = 0, maxIndex = 0;
+        for (int i = 0; i < arr.size(); i++) {
+            if (arr.get(i).length() > maxLength) {
+                maxLength = arr.get(i).length();
+                maxIndex = i;
+            }
+        }
+        result = arr.get(maxIndex);
+
+        return result;
+    }
+
+    static String removeExclamationMarks(String s) {
+        return s.replace("!", "");
+    }
+
+
+    public static String autoMorphic(int number) {
+        String strNumber = String.valueOf(number);
+        String powNumber = String.valueOf(number * number);
+        if (powNumber.endsWith(strNumber)) return "Automorphic";
+        return "Not!!";
+    }
+
+
+    public static String meeting(String s) {
+        List<String> sep = Arrays.stream(s.toUpperCase().split(";")).collect(Collectors.toList());
+        StringBuilder result = new StringBuilder();
+
+        String[] tmpArr = {"", ""};
+
+        for (int i = 0; i < sep.size(); i++) {
+            tmpArr = sep.get(i).split(":");
+            sep.set(i, tmpArr[1] + ", " + tmpArr[0]);
+        }
+
+        Collections.sort(sep);
+        for (String it : sep) {
+            result.append("(").append(it).append(")");
+        }
+
+        System.out.println(result.toString());
+        return result.toString();
+    }
+
+
+    public static boolean isPrime(int n) {
+        if (n == 2) return true;
+        for (int i = 2; i < sqrt(n) + 1; i++) {
+            if (n % i == 0) return false;
+        }
+        return true;
+    }
+
+    public static List<Integer> notPrimes(int a, int b) {
+        return IntStream.rangeClosed(a, b - 1).filter(n -> (!isPrime(n) && !Integer.toString(n).matches(("(.*)[146890](.*)")))).boxed().collect(Collectors.toList());
+    }
+
+    public static String fromNb2Str(int n, int[] sys) {
+        int val = 1;
+        for (var it : sys)
+            val *= it;
+        if (val > n) {
+            List<Integer> factors = new ArrayList<>();
+            for (var it : sys) {
+                for (int i = 2; i < it; i++) {
+                    if (it % i == 0) factors.add(i);
+                }
+            }
+            List<Integer> fac = factors.stream().filter(u -> Collections.frequency(factors, u) > 1).collect(Collectors.toList());
+            if (fac.size() != 0) return "Not applicable";
+            else {
+                StringBuilder result = new StringBuilder("-");
+                for (var it : sys) {
+                    result.append(Integer.toString(n % it)).append("--");
+                }
+                return result.toString().substring(0, result.length() - 1);
+            }
+        }
+        return "Not applicable";
+    }
+
+    public static long[] seven(long m) {
+        long count = 0;
+        long number = 0;
+        while (Long.toString(m).length() > 2) {
+            number = Long.parseLong(Character.toString(Long.toString(m).charAt(Long.toString(m).length() - 1)));
+            m = Long.parseLong(Long.toString(m).substring(0, Long.toString(m).length() - 1));
+            m -= 2 * number;
+            count++;
+        }
+        return new long[]{m, count};
+    }
+
+    public static int sumOfDigits(long n) {
+        int sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n = (n - n % 10) / 10;
+        }
+        return sum;
+    }
+
+    public static String orderWeight(String strng) {
+        if (!strng.contains(" ")) return strng;
+        List<String> outputList = new ArrayList<>();
+        List<String> inputList = Arrays.asList(strng.split(" "));
+        System.out.println(inputList);
+        Map<Integer, List<String>> groupped = inputList.stream().collect(Collectors.groupingBy(n -> sumOfDigits(Long.valueOf(n))));
+        System.out.println(groupped);
+        return groupped.keySet().stream()
+                .sorted()
+                .map(index -> groupped.get(index).stream().sorted().reduce((s, s2) -> s += " " + s2).get())
+                .collect(Collectors.joining(" "));
+    }
+
+
+    public static String factors(int number) {
+        int n = 0;
+        int k = 2;
+        int tmp = 0;
+        StringBuilder result = new StringBuilder();
+        result.append("(");
+        while (number > 1) {
+            if (isPrime(k) && number % k == 0) {
+                number /= k;
+                //System.out.println(number);
+                n++;
+                tmp = k;
+            } else if (isPrime(k) && number % k != 0) {
+                if (n != 1 && tmp != 0 && n != 0) result.append(tmp).append("**").append(n).append(")").append("(");
+                else if (n == 1) result.append(tmp).append(")").append("(");
+                k++;
+                n = 0;
+            } else k++;
+        }
+        if (n != 1 && tmp != 0 && n != 0) result.append(tmp).append("**").append(n).append(")").append("(");
+        else if (n == 1) result.append(tmp).append(")");
+        System.out.println(result);
+        //System.out.println(tmp);
+
+        return result.toString();
+    }
 
 
 
-        String a[] = new String[]{ "arp", "live", "strong" };
-        String b[] = new String[] { "klaudia","harp", "sharp", "armstrong" };
-        String r[] = new String[] { "arp", "live", "strong" };
-        System.out.println(inArray(a, b)[0]);
+    /**
+                    ----~MAIN~----
+                                                   **/
+
+
+    public static void main(String[] args) {
+        factors(86240);
     }
 }
 

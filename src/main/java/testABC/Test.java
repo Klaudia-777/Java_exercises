@@ -1,4 +1,4 @@
-package TestABC;
+package testABC;
 
 import pkg1.A;
 import pkg1.B;

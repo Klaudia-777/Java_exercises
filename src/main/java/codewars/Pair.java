@@ -1,4 +1,4 @@
-package Codewars;
+package codewars;
 
 public class Pair<K,V> {
     public K first;

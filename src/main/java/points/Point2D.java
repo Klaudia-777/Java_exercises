@@ -1,4 +1,4 @@
-package laboratorium1;
+package points;
 
 import static java.lang.Math.*;
 
