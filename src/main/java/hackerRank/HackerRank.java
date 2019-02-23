@@ -1,6 +1,12 @@
 package hackerRank;
 
+import pkg2.C;
+
 import java.util.*;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+import static java.lang.Math.toIntExact;
 
 public class HackerRank {
     static int sockMerchant(int n, int[] ar) {
@@ -106,30 +112,70 @@ public class HackerRank {
 
 
     static void minimumBribes(int[] q) {
-        int count=0;
+        int count = 0;
         boolean isTooMany = false;
         for (int i = 0; i < q.length; i++) {
-            if(q[i]-(i+1)>0){
-                count+=q[i]-(i+1);
-                if(q[i]-(i+1)>2) {
-                    isTooMany=true;
+            if (q[i] - (i + 1) > 0) {
+                count += q[i] - (i + 1);
+                if (q[i] - (i + 1) > 2) {
+                    isTooMany = true;
                 }
             }
         }
-        if(isTooMany)System.out.println("Too chaotic");
+        if (isTooMany) System.out.println("Too chaotic");
         else
             System.out.println(count);
 
     }
 
+    static int maximumToys(int[] prices, int k) {
+        Arrays.sort(prices);
+        int count = 0;
+        for (int i = 0; i < prices.length; i++) {
+            if (k >= prices[i]) {
+                count++;
+                k -= prices[i];
+            }
+        }
+        return count;
+    }
+
+    static int minimumSwaps(int[] arr) {
+        Map<Integer, Integer> toSwap = new HashMap<>();
+        ArrayList<Integer> toS = new ArrayList<>();
+        for (int i = 0; i < arr.length; i++) {
+            if (arr[i] != i + 1) toSwap.put(arr[i], i);
+        }
+        int min = 0;
+        for (int i = min; i < toS.size(); i++) {
+            toSwap.get(toSwap.keySet().stream().min(Comparator.comparing(Integer::intValue)));
+        }
+        System.out.println(toS);
+        return 0;
+    }
+
+
+
+
+    static int makeAnagram(String a, String b) {
+        Map<String,Integer> map1 = Arrays.stream(a.split("")).collect(Collectors.toMap(s -> s, s -> Collections.frequency(Arrays.asList(a.split("")), s), (c, d) -> d));
+        Map<String,Integer> map2 = Arrays.stream(b.split("")).collect(Collectors.toMap(s -> s, s -> Collections.frequency(Arrays.asList(b.split("")), s), (c, d) -> d));
+
+        int count = Arrays.stream(a.split("")).parallel().filter(b::contains).distinct().mapToInt(n->{
+            Integer m=map1.get(n);
+            Integer p=map2.get(n);
+            if(m>p) return p;
+            else return m;
+        }).sum();
+        return a.length()-count+b.length()-count;
+    }
+
     /**
-            *
-            * Main *
-     `             *        **/
+     * Main *
+     * `             *
+     **/
 
     public static void main(String[] args) {
-
-        int[] a = {2,1,5,3,4};
-        minimumBribes(a);
+        System.out.println(makeAnagram("fcrxzwscanmligyxyvym", "jxwtrhvujlmrpdoqbisbwhmgpmeoke"));
     }
 }

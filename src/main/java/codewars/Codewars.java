@@ -3,14 +3,18 @@ package codewars;
 /**
  * SOLVED KATA'S
  * RANKS 8 to 5
-                **/
+ **/
 
 import lombok.var;
 
 import java.util.*;
 import java.util.ArrayList;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import static java.lang.Math.pow;
 import static java.lang.Math.sqrt;
 
 
@@ -354,7 +358,7 @@ public class Codewars {
 
     public static String HighAndLow(String numbers) {
         String result = "";
-        List arr = new ArrayList<String>();
+        List<String> arr = new ArrayList<String>();
         result += Arrays.stream(numbers.split(" ")).mapToInt(Integer::valueOf).max().getAsInt();
         result += Arrays.stream(numbers.split(" ")).mapToInt(Integer::valueOf).min().getAsInt();
 
@@ -459,27 +463,19 @@ public class Codewars {
         return new long[]{m, count};
     }
 
-    public static int sumOfDigits(long n) {
-        int sum = 0;
-        while (n > 0) {
-            sum += n % 10;
-            n = (n - n % 10) / 10;
-        }
-        return sum;
-    }
-
-    public static String orderWeight(String strng) {
-        if (!strng.contains(" ")) return strng;
-        List<String> outputList = new ArrayList<>();
-        List<String> inputList = Arrays.asList(strng.split(" "));
-        System.out.println(inputList);
-        Map<Integer, List<String>> groupped = inputList.stream().collect(Collectors.groupingBy(n -> sumOfDigits(Long.valueOf(n))));
-        System.out.println(groupped);
-        return groupped.keySet().stream()
-                .sorted()
-                .map(index -> groupped.get(index).stream().sorted().reduce((s, s2) -> s += " " + s2).get())
-                .collect(Collectors.joining(" "));
-    }
+//
+//    public static String orderWeight(String strng) {
+//        if (!strng.contains(" ")) return strng;
+//        List<String> outputList = new ArrayList<>();
+//        List<String> inputList = Arrays.asList(strng.split(" "));
+//        System.out.println(inputList);
+//        Map<Integer, List<String>> groupped = inputList.stream().collect(Collectors.groupingBy(n -> sumOfDigits(Long.valueOf(n))));
+//        System.out.println(groupped);
+//        return groupped.keySet().stream()
+//                .sorted()
+//                .map(index -> groupped.get(index).stream().sorted().reduce((s, s2) -> s += " " + s2).get())
+//                .collect(Collectors.joining(" "));
+//    }
 
 
     public static String factors(int number) {
@@ -510,14 +506,86 @@ public class Codewars {
     }
 
 
+    public static int points(String[] games) {
+        int points = 0;
+        for (var it : games) {
+            if (it.charAt(0) > it.charAt(2)) points += 3;
+            else if (it.charAt(0) == it.charAt(2)) points += 1;
+        }
+        return points;
+    }
+
+    public static long sumOfDigits(long n) {
+        long sum = 0;
+        while (n > 0) {
+            sum += n % 10;
+            n = (n - n % 10) / 10;
+        }
+        return sum;
+    }
+
+    public static String reverseOrder(String str) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (int i = str.length() - 1; i >= 0; i--) {
+            stringBuilder.append(str.charAt(i));
+        }
+        return stringBuilder.toString();
+    }
+
+    public static String rotateToTheLeftByOne(String str) {
+        if (str.length() == 1 || str.length() == 0) return str;
+        return str.substring(1) + str.charAt(0);
+    }
+
+    public static String revRot(String strng, int sz) {
+        if (sz == 0 || strng == "" || strng.length() < sz) return "";
+        else if (sz == 1) return strng;
+        String[] arrstr = new String[strng.length() / sz];
+        int counter = 0;
+        StringBuilder result = new StringBuilder();
+
+        while (strng.length() > 0) {
+            if (strng.length() >= sz) {
+                arrstr[counter] = strng.substring(0, sz);
+                strng = strng.substring(sz);
+                counter++;
+            } else {
+                strng = "";
+            }
+        }
+        System.out.println(Arrays.asList(arrstr));
+        for (String it : arrstr) {
+            if ((sumOfDigits(Long.parseLong(it.substring(0, it.length() / 2))) + sumOfDigits(Long.parseLong(it.substring(it.length() / 2)))) % 2 == 0) {
+                result.append(reverseOrder(it));
+            } else {
+                result.append(rotateToTheLeftByOne(it));
+            }
+        }
+        System.out.println(result);
+        return result.toString();
+    }
+
+    public static double[] tribonacci(double[] s, int n) {
+        double[] tab = new double[n];
+        for (int i = 0; i < n; i++) {
+            if (i < s.length)
+                tab[i] = s[i];
+            else {
+                tab[i] = tab[i - 1] + tab[i - 2] + tab[i - 3];
+            }
+        }
+        return tab;
+    }
+
 
     /**
-                    ----~MAIN~----
-                                                   **/
+     * ----~MAIN~----
+     **/
 
 
     public static void main(String[] args) {
-        factors(86240);
+
+
     }
 }
 
