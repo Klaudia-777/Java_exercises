@@ -577,7 +577,6 @@ public class Codewars {
         return tab;
     }
 
-
     /**
      * ----~MAIN~----
      **/
